@@ -8,9 +8,6 @@ import * as actions from '../../store/actions/index';
 
 class Checkout extends Component {
 
-    componentDidMount() {
-        this.props.onInitPurchase();
-    }
     checkoutCancelledHandler = () => {
         this.props.history.goBack();
     }
@@ -21,11 +18,11 @@ class Checkout extends Component {
 
     render () {
         let summary = <Redirect to="/" />
-        if(this.props.ings){
-            const purchaseRedirect = this.props.purchased?<Redirect to="/" />:null;
+        if ( this.props.ings ) {
+            const purchasedRedirect = this.props.purchased ? <Redirect to="/"/> : null;
             summary = (
                 <div>
-                    {purchaseRedirect}
+                    {purchasedRedirect}
                     <CheckoutSummary
                         ingredients={this.props.ings}
                         checkoutCancelled={this.checkoutCancelledHandler}
@@ -36,11 +33,7 @@ class Checkout extends Component {
                 </div>
             );
         }
-        return (
-            <div>
-                {summary}
-            </div>
-        );
+        return summary;
     }
 }
 
@@ -51,10 +44,4 @@ const mapStateToProps = state => {
     }
 };
 
-const dispatchToProps = dispatch => {
-    return {
-        onInitPurchase : () => dispatch(actions.purchaseInit())
-    }
-}
-
-export default connect(mapStateToProps,dispatchToProps)(Checkout);
+export default connect( mapStateToProps )( Checkout );
