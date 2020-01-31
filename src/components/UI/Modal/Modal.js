@@ -12,7 +12,6 @@ class Modal extends Component {
 
     render () {
         const classesUsed = [classes.Modal , this.props.show ? classes.ModalShow : classes.ModalHide];
-        console.log(classesUsed);
         return (
             <Aux>
                 <Backdrop show={this.props.show} clicked={this.props.modalClosed} />
