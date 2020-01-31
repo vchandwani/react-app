@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CSSTransition from 'react-transition-group/CSSTransition';
 
 import classes from './Modal.css';
 import Aux from '../../../hoc/ReactAux/ReactAux';
@@ -11,18 +12,18 @@ class Modal extends Component {
     }
 
     render () {
-        const classesUsed = [classes.Modal , this.props.show ? classes.ModalShow : classes.ModalHide];
+        const animationTiming = {
+            enter: 400,
+            exit : 1000
+        }
         return (
             <Aux>
                 <Backdrop show={this.props.show} clicked={this.props.modalClosed} />
-                <div
-                    className={classesUsed.join(' ')}
-                    style={{
-                        transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)',
-                        opacity: this.props.show ? '1' : '0'
-                    }}>
-                    {this.props.children}
-                </div>
+                <CSSTransition in={this.props.show} timeout={animationTiming} mountOnEnter unmountOnExit classNames="fade-slide">
+                    <div className={classes.Modal}>
+                        {this.props.children}
+                    </div>
+                </CSSTransition>
             </Aux>
         )
     }
