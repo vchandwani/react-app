@@ -3,6 +3,7 @@ import axios from 'axios';
 import * as actionTypes from './actionTypes';
 
 export const authStart = () => {
+    //Sync call
     return {
         type: actionTypes.AUTH_START
     };
@@ -33,6 +34,7 @@ export const logout = () => {
 };
 
 export const checkAuthTimeout = (expirationTime) => {
+    //Async call
     return dispatch => {
         setTimeout(() => {
             dispatch(logout());
@@ -41,6 +43,7 @@ export const checkAuthTimeout = (expirationTime) => {
 };
 
 export const auth = (email, password, isSignup) => {
+    //Async call
     return dispatch => {
         dispatch(authStart());
         const authData = {
@@ -75,7 +78,8 @@ export const setAuthRedirectPath = (path) => {
 };
 
 export const authCheckState = () => {
-  return dispatch => {
+    //Async call
+    return dispatch => {
       const token = localStorage.getItem('token');
       if (!token) {
           dispatch(logout());
