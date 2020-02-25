@@ -9,6 +9,7 @@ export {
     purchaseBurger,
     purchaseInit,
     fetchOrders,
+    purchaseBurgerStart,
     purchaseBurgerSuccess,
     purchaseBurgerFail,
     fetchOrdersSuccess,
