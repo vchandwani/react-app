@@ -31,23 +31,12 @@ describe('<Auth />', () => {
 describe('<Auth />', () => {
     let wrapper;
     let mockFunc;
-
     beforeEach(() => {
         mockFunc  = jest.fn();
         wrapper = setup();
-        let submit = wrapper.find(Button).at(1);
-        submit.simulate('click',mockFunc);
-        console.log(submit.debug());
+        wrapper.setState({ isSignup: false });
     });
-    
-    test('Auth renders with Switch to Sign Up', () => {
-
-        // expect(wrapper.state('currentGuess')).toBe('');
-        console.log(wrapper.state('isSignup'));
-        console.log(wrapper.find(Button).at(1));
-
-        // wrapper.setProps({ isSignup :false });
-        // console.log(wrapper.debug());
-        // expect(wrapper.find(Button).at(1).render().text()).toBe('SWITCH TO SIGNUP');
+    test('Auth renders with Switch to Sign Up Text check', () => {
+        expect(wrapper.find(Button).at(1).render().text()).toBe('SWITCH TO SIGNUP');
     });
 });
